@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/css/home.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%= locals.title %></title>
+    <script src="https://kit.fontawesome.com/6a9ee34697.js" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+
+
+    <h1 id="page-heading"> Price manager app </h1>
+
+    <div id="main-section">
+
+        <div id="list-container">
+            <ul>
+                <%  for(let i of priceManager) { %> 
+    
+                    <li class="product">
+                        <div class="details">
+                            <span id="first_span"><%=  i.product_name %></span>
+                            <span id="details-price"><%=  i.price %></span>
+                        </div>
+
+                        <div class="delete-button">
+
+                            <a href="/delete-item/?product_name=<%= i.product_name%>">
+                                X
+                            </a>
+
+                        </div>
+
+                            
+                    </li>
+                    
+                <% }%>
+            </ul>
+        </div>
+    
+        <div id="form">
+            
+        <form action="/add-item" method="post">
+            <input type="text" name="product_name" id="" required>
+            <input type="text" name="price" required>
+    
+            <button type="submit"> Add to list </button>
+        </form>
+    
+        </div>
+
+    </div>
+
+    <div id="aside-section">
+
+
+
+        <div id="inside-aside">
+
+            <div id="total-amount">
+
+                <h3 id="total-heading"> Your total amount </h3>
+    
+            </div>
+
+
+
+            <div id="the-amount">
+
+                <% let total = 0; %>
+    
+                <%  for(let i of priceManager) { %> 
+                    <% var curr = Number(i.price)%>
+    
+                            
+                    <%  total= total + curr %>
+    
+                    
+                <% }%>
+
+            
+                <div id="display-amount" >
+                    <b>
+                <%= total  %>
+
+                </b>
+                </div>
+                
+    
+    
+    
+            </div>
+
+
+
+
+        </div>
+
+
+
+        
+
+        
+        
+    </div>
+    <script src="https://kit.fontawesome.com/6a9ee34697.js" crossorigin="anonymous"></script>
+    <script src="/js/home.js"></script>
+</body>
+</html>
